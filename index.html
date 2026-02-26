@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Evaluator Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>ML Evaluator Pro</h1>
+        <p>Premium Machine Learning Evaluation Suite</p>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('regression')">Regression</button>
+        <button class="tab-btn" onclick="switchTab('classification')">Classification</button>
+    </div>
+
+    <div class="container">
+        <!-- Regression Dashboard -->
+        <div id="regression-dash" class="dashboard active">
+            <div class="glass-card">
+                <div class="input-group">
+                    <label>Features (JSON Array of Arrays)</label>
+                    <textarea id="reg-features">[[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]]</textarea>
+                </div>
+                <div class="input-group">
+                    <label>Targets (JSON Array)</label>
+                    <textarea id="reg-targets">[2, 4, 5, 4, 5, 8, 10, 11, 13, 15]</textarea>
+                </div>
+                <button class="run" onclick="runRegression()">Execute Analysis</button>
+            </div>
+
+            <div id="reg-results" style="display: none;">
+                <div class="results-grid">
+                    <div class="metric-card">
+                        <div class="metric-value" id="reg-mse">-</div>
+                        <div class="metric-label">MSE</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="reg-mae">-</div>
+                        <div class="metric-label">MAE</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="reg-r2">-</div>
+                        <div class="metric-label">R² Score</div>
+                    </div>
+                </div>
+                <div class="glass-card" style="margin-top: 2rem;">
+                    <canvas id="regChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Classification Dashboard -->
+        <div id="classification-dash" class="dashboard">
+            <div class="glass-card">
+                <div class="input-group">
+                    <label>Features (JSON Array of Arrays)</label>
+                    <textarea id="cls-features">[[1, 2], [1.5, 1.8], [5, 8], [8, 8], [1, 0.6], [9, 11], [8, 2], [10, 2], [9, 3]]</textarea>
+                </div>
+                <div class="input-group">
+                    <label>Targets (JSON Array of Integers)</label>
+                    <textarea id="cls-targets">[0, 0, 1, 1, 0, 1, 1, 1, 1]</textarea>
+                </div>
+                <button class="run" onclick="runClassification()">Execute Analysis</button>
+            </div>
+
+            <div id="cls-results" style="display: none;">
+                <div class="results-grid">
+                    <div class="metric-card">
+                        <div class="metric-value" id="cls-acc">-</div>
+                        <div class="metric-label">Accuracy</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="cls-f1">-</div>
+                        <div class="metric-label">F1-Score</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="cls-prec">-</div>
+                        <div class="metric-label">Precision</div>
+                    </div>
+                </div>
+                <div class="glass-card" style="margin-top: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: #94a3b8;">Prediction Breakdown</h3>
+                    <canvas id="clsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Built with Antigravity • Premium ML Tooling
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
